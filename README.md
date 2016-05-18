@@ -19,7 +19,7 @@ Project URL: http://ec2-52-11-221-138.us-west-2.compute.amazonaws.com/
 
 iii. Summary of Software installed & configuration changes:
 ----------
-unbuntu packages
+ubuntu packages
 ----------
 * git
 * python-flask
@@ -37,8 +37,9 @@ unbuntu packages
 
 Configuration Changes:
 ----------
-
-* /etc/ssh/sshd_config
+ 
+/etc/ssh/sshd_config
+----------
 +Port 2200
 -Port 22
 +PermitRootLogin no
@@ -47,8 +48,9 @@ Configuration Changes:
 +PasswordAuthentication no
 -PasswordAuthentication yes
 
-* /etc/apache2/sites-available/Catalog.conf
-Add:
+/etc/apache2/sites-available/Catalog.conf
+----------
+* Add:
 <VirtualHost *:80>
                 ServerName ec2-52-11-221-138.us-west-2.compute.amazonaws.com
                 ServerAdmin chanculture@gmail.com
@@ -67,8 +69,9 @@ Add:
                 CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 
-* /var/www/Catalog/catalog.wsgi
-Add:
+/var/www/Catalog/catalog.wsgi
+----------
+* Add:
 #!/usr/bin/python
 import sys
 import logging
@@ -78,12 +81,14 @@ sys.path.insert(0,"/var/www/Catalog/catalog")
 from project import app as application
 application.secret_key = 'SECRET' # intentionally hidden
 
-* /etc/hosts
-Add (resolve error: "sudo: unable to resolve host ip-10-20-3-122"):
+/etc/hosts
+----------
+* Add (resolve error: "sudo: unable to resolve host ip-10-20-3-122"):
 127.0.0.1 localhost ip-10-20-3-122
 
-* /etc/apache2/sites-enabled/000-default.conf
-Add:
+/etc/apache2/sites-enabled/000-default.conf
+----------
+* Add:
 <Directory /var/www/html>
             Options Indexes FollowSymLinks MultiViews
             AllowOverride All
@@ -91,7 +96,8 @@ Add:
             allow from all
 </Directory>
 
-* /var/www/html/.htaccess
+/var/www/html/.htaccess
+----------
 RewriteEngine on 
 RewriteCond %{HTTP_HOST} ^52\.11\.221\.138$ RewriteRule ^/(.*)$ http://ec2-52-11-221-138.us-west-2.compute.amazonaws.com//$1 [L,R]
 
