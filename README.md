@@ -12,6 +12,7 @@ i.
 IP Address: 52.11.221.138
 Domain name: http://ec2-52-11-221-138.us-west-2.compute.amazonaws.com/
 SSH Port: 2200
+user/password: grader/G33oY5rf[o_X
 
 ii.
 ----------
